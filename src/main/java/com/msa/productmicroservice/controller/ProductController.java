@@ -22,7 +22,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/product")
-    public ResponseEntity<ResponseComDto> searchProduct(Long productId){
+    public ResponseEntity<ResponseComDto> searchProduct(@RequestParam Long productId){
         ProductDto.show show = productService.searchProduct(productId);
         return new ResponseEntity<ResponseComDto>(
                 ResponseComDto.builder()
@@ -32,8 +32,18 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<ResponseComDto> searchProducts(CategoryDto.searchProduct searchProduct){
-        Page<ProductDto.show> shows = productService.searchProducts(searchProduct);
+    public ResponseEntity<ResponseComDto> searchProductForOrder(@RequestParam Long[] productIds){
+        List<ProductDto.show> shows = productService.searchProductsForOrder(productIds);
+        return new ResponseEntity<ResponseComDto>(
+                ResponseComDto.builder()
+                        .resultMsg("조회 완료")
+                        .resultObj(shows)
+                        .build(), HttpStatus.OK);
+    }
+
+    @GetMapping("/category/products")
+    public ResponseEntity<ResponseComDto> searchProducts(CategoryDto.searchProduct searchProduct, Pageable pageable){
+        Page<ProductDto.show> shows = productService.searchProductByCategory(searchProduct, pageable);
         return new ResponseEntity<ResponseComDto>(
                 ResponseComDto.builder()
                         .resultMsg("조회 완료")

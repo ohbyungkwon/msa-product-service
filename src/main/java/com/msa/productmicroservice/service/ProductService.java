@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -32,9 +33,16 @@ public class ProductService {
         return product.convertShowDto();
     }
 
-    public Page<ProductDto.show> searchProducts(CategoryDto.searchProduct searchProduct){
+    public List<ProductDto.show> searchProductsForOrder(Long[] productIds){
+        return productRepository.findProductsByProductIdIn(productIds)
+                .stream()
+                .map(Product::convertShowDto)
+                .collect(Collectors.toList());
+    }
+
+    public Page<ProductDto.show> searchProductByCategory(CategoryDto.searchProduct searchProduct, Pageable pageable){
         return productRepository.findProductByCategoryIdAndDepth(searchProduct.getCategoryId(),
-                searchProduct.getDepth(), searchProduct.getPageable());
+                searchProduct.getDepth(), pageable);
     }
 
     @Transactional

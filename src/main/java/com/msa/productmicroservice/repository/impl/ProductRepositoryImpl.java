@@ -34,9 +34,9 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
                 .select(new QProductDto_show(
                         product.price, product.name
                 )).from(product)
-                .join(category)
-                .where(product.category.categoryId.eq(categoryId)
-                        .and(product.category.depth.eq(depth)))
+                .join(product.category, category)
+                .where(category.categoryId.eq(categoryId)
+                        .and(category.depth.eq(depth)))
                 .orderBy(product.name.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
