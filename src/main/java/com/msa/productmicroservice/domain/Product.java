@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 public class Product {
 
     @Id
+    @GeneratedValue
     private Long productId;
 
     @Column(nullable = false)
