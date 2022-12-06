@@ -21,7 +21,7 @@ public class Category {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long categoryId;
 
     @Column(nullable = false)
     private String name;

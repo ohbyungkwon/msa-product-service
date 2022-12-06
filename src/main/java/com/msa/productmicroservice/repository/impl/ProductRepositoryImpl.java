@@ -35,7 +35,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
                         product.price, product.name
                 )).from(product)
                 .join(product.category, category)
-                .where(category.id.eq(categoryId)
+                .where(category.categoryId.eq(categoryId)
                         .and(category.depth.eq(depth)))
                 .orderBy(product.name.desc())
                 .offset(pageable.getOffset())

@@ -20,7 +20,7 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long productId;
 
     @Column(nullable = false)
     private Integer price;
@@ -29,6 +29,7 @@ public class Product {
     private String name;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @CreatedDate
