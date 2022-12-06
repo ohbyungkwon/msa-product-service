@@ -34,7 +34,7 @@ public class ProductService {
     }
 
     public List<ProductDto.show> searchProductsForOrder(Long[] productIds){
-        return productRepository.findProductsByProductIdIn(productIds)
+        return productRepository.findProductsByIdIn(productIds)
                 .stream()
                 .map(Product::convertShowDto)
                 .collect(Collectors.toList());
