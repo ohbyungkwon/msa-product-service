@@ -3,6 +3,8 @@ package com.msa.productmicroservice.dto;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
+import java.util.List;
+
 public class ProductDto {
     @Setter
     @Getter
@@ -28,5 +30,16 @@ public class ProductDto {
             this.price = price;
             this.name = name;
         }
+    }
+
+
+
+    @Setter
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class searchProduct{
+        private List<Long> productId;
     }
 }

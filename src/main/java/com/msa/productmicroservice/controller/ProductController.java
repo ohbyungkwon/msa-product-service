@@ -32,8 +32,8 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<ResponseComDto> searchProductForOrder(@RequestParam Long[] productIds){
-        List<ProductDto.show> shows = productService.searchProductsForOrder(productIds);
+    public ResponseEntity<ResponseComDto> searchProductForOrder(ProductDto.searchProduct searchProduct){
+        List<ProductDto.show> shows = productService.searchProductsForOrder(searchProduct.getProductId());
         return new ResponseEntity<ResponseComDto>(
                 ResponseComDto.builder()
                         .resultMsg("조회 완료")

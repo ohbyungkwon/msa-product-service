@@ -33,7 +33,7 @@ public class ProductService {
         return product.convertShowDto();
     }
 
-    public List<ProductDto.show> searchProductsForOrder(Long[] productIds){
+    public List<ProductDto.show> searchProductsForOrder(List<Long> productIds){
         return productRepository.findProductsByProductIdIn(productIds)
                 .stream()
                 .map(Product::convertShowDto)

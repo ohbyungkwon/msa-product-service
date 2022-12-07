@@ -33,6 +33,5 @@ public class CategoryDto {
     public static class searchProduct{
         private Long categoryId;
         private Integer depth;
-        private Pageable pageable;
     }
 }
