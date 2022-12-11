@@ -3,7 +3,6 @@ package com.msa.productmicroservice.controller;
 import com.msa.productmicroservice.dto.CategoryDto;
 import com.msa.productmicroservice.dto.ProductDto;
 import com.msa.productmicroservice.dto.ResponseComDto;
-import com.msa.productmicroservice.service.CategoryService;
 import com.msa.productmicroservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/product-service")
 public class ProductController {
     private final ProductService productService;
 
